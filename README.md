@@ -1,3 +1,7 @@
+Aquí tienes un archivo `README.md` actualizado que puedes usar para tu repositorio de GitHub. He incluido tu repositorio y email de contacto:
+
+### `README.md`
+
 ```markdown
 # Proyecto de Generación de Certificados
 
@@ -9,7 +13,7 @@ Este proyecto es una aplicación web basada en Django que permite generar certif
 - Inclusión de códigos QR con verificación mediante criptografía.
 - Diseño elegante y profesional con patrones de seguridad en el fondo.
 - Exportación de certificados a formato PDF.
-- Interface simple y fácil de usar.
+- Interfaz simple y fácil de usar.
 
 ## Requisitos Previos
 
@@ -24,8 +28,8 @@ Asegúrate de tener instalado lo siguiente en tu entorno:
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
-   cd tu_repositorio
+   git clone https://github.com/assizalcaraz/certificados.git
+   cd certificados
    ```
 
 2. **Crea un entorno virtual:**
@@ -99,6 +103,5 @@ Este proyecto está licenciado bajo la [MIT License](LICENSE).
 
 ## Contacto
 
-Para cualquier pregunta o sugerencia, puedes contactarme a través de assizalcaraz@gmail.com
+Para cualquier pregunta o sugerencia, puedes contactarme a través de [assizalcaraz@gmail.com](mailto:assizalcaraz@gmail.com).
 ```
-
