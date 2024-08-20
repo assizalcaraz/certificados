@@ -1,12 +1,11 @@
-
-
 ```markdown
 # Proyecto de Generación de Certificados
 
 Este proyecto es una aplicación web basada en Django que permite generar certificados de participación para cursos y eventos. Los certificados generados incluyen un código QR único para la verificación, y están diseñados con patrones de seguridad avanzados.
 
-![Ejemplo de Certificado](images/certificado_ejemplo.png)
+## Ejemplo de Certificado
 
+![Ejemplo de Certificado](certificado_ejemplo.png)
 
 ## Características
 
