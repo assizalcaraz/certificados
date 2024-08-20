@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificado</title>
+</head>
+<body>
+    <h1>Certificado de Participación</h1>
+    <p>Nombre: {{ certificado.nombre_participante }}</p>
+    <p>Curso: {{ certificado.nombre_curso }}</p>
+    <p>Fecha de Emisión: {{ certificado.fecha_emision }}</p>
+
+    <!-- Verifica la URL generada para el código QR -->
+    <p>URL del QR: {{ certificado.codigo_qr.url }}</p>
+
+    <img src="{{ certificado.codigo_qr.url }}" alt="Código QR">
+</body>
+</html>

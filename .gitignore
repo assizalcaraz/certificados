@@ -1,0 +1,53 @@
+certificados
+codigos_qr
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cython debug symbols
+cython_debug/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+
+# Ignore media files (generated content like QR codes)
+media/
+
+# Ignore static files
+staticfiles/
+static/
+
+# Ignore local environment files
+.env
+*.env
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Ignore IDE and editor specific files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Ignore distribution files
+/dist/
+build/
+*.egg-info/
+
+# macOS specific
+.DS_Store
+
+# Ignore files related to coverage reports
+htmlcov/
+.coverage
+.tox/
+

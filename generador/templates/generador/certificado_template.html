@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de Participación</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 2cm;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            position: relative;
+            background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border: 2px solid #ddd;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 0;
+            text-transform: uppercase;
+            color: #333;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-left {
+            width: 65%;
+        }
+
+        .info-left p {
+            font-size: 1.5em;
+            line-height: 1.4;
+            margin: 15px 0;
+            color: #555;
+        }
+
+        .qr {
+            width: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+        }
+
+        /* Primer patrón de líneas curvas */
+        .pattern-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Segundo patrón de líneas curvas */
+        .pattern-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Tercer patrón de líneas curvas en un gris diferente */
+        .pattern-3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Primer patrón -->
+        <div class="pattern-1">
+            <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
+                <path d="M0 100 Q 100 200 200 100 T 400 100 T 600 100 T 800 100 T 1000 100" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+                <path d="M0 150 Q 100 250 200 150 T 400 150 T 600 150 T 800 150 T 1000 150" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+                <path d="M0 200 Q 100 300 200 200 T 400 200 T 600 200 T 800 200 T 1000 200" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+                <path d="M0 250 Q 100 350 200 250 T 400 250 T 600 250 T 800 250 T 1000 250" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+                <path d="M0 300 Q 100 400 200 300 T 400 300 T 600 300 T 800 300 T 1000 300" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+                <path d="M0 350 Q 100 450 200 350 T 400 350 T 600 350 T 800 350 T 1000 350" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+                <path d="M0 400 Q 100 500 200 400 T 400 400 T 600 400 T 800 400 T 1000 400" fill="none" stroke="rgba(0, 0, 0, 0.1)" stroke-width="2"/>
+            </svg>
+        </div>
+
+        <!-- Segundo patrón en azul y celeste -->
+        <div class="pattern-2">
+            <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
+                <path d="M0 50 Q 150 150 300 50 T 600 50 T 900 50 T 1200 50" fill="none" stroke="rgba(0, 123, 255, 0.5)" stroke-width="2"/>
+                <path d="M0 100 Q 150 200 300 100 T 600 100 T 900 100 T 1200 100" fill="none" stroke="rgba(173, 216, 230, 0.5)" stroke-width="2"/>
+                <path d="M0 150 Q 150 250 300 150 T 600 150 T 900 150 T 1200 150" fill="none" stroke="rgba(0, 123, 255, 0.5)" stroke-width="2"/>
+                <path d="M0 200 Q 150 300 300 200 T 600 200 T 900 200 T 1200 200" fill="none" stroke="rgba(173, 216, 230, 0.5)" stroke-width="2"/>
+                <path d="M0 250 Q 150 350 300 250 T 600 250 T 900 250 T 1200 250" fill="none" stroke="rgba(0, 123, 255, 0.5)" stroke-width="2"/>
+                <path d="M0 300 Q 150 400 300 300 T 600 300 T 900 300 T 1200 300" fill="none" stroke="rgba(173, 216, 230, 0.5)" stroke-width="2"/>
+                <path d="M0 350 Q 150 450 300 350 T 600 350 T 900 350 T 1200 350" fill="none" stroke="rgba(0, 123, 255, 0.5)" stroke-width="2"/>
+            </svg>
+        </div>
+
+        <!-- Tercer patrón en gris más oscuro -->
+        <div class="pattern-3">
+            <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
+                <path d="M0 75 Q 125 175 250 75 T 500 75 T 750 75 T 1000 75" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+                <path d="M0 125 Q 125 225 250 125 T 500 125 T 750 125 T 1000 125" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+                <path d="M0 175 Q 125 275 250 175 T 500 175 T 750 175 T 1000 175" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+                <path d="M0 225 Q 125 325 250 225 T 500 225 T 750 225 T 1000 225" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+                <path d="M0 275 Q 125 375 250 275 T 500 275 T 750 275 T 1000 275" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+                <path d="M0 325 Q 125 425 250 325 T 500 325 T 750 325 T 1000 325" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+                <path d="M0 375 Q 125 475 250 375 T 500 375 T 750 375 T 1000 375" fill="none" stroke="rgba(50, 50, 50, 0.15)" stroke-width="2"/>
+            </svg>
+        </div>
+
+        <h1>Certificado de Participación</h1>
+        <div class="info">
+            <div class="info-left">
+                <p><strong>Nombre:</strong> {{ certificado.nombre_participante }}</p>
+                <p><strong>Curso:</strong> {{ certificado.nombre_curso }}</p>
+                <p><strong>Fecha de Emisión:</strong> {{ certificado.fecha_emision }}</p>
+            </div>
+            <div class="qr">
+                <img src="{{ certificado.codigo_qr.url }}" alt="Código QR">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
