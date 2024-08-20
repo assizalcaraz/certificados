@@ -1,11 +1,12 @@
-Aquí tienes un archivo `README.md` actualizado que puedes usar para tu repositorio de GitHub. He incluido tu repositorio y email de contacto:
 
-### `README.md`
 
 ```markdown
 # Proyecto de Generación de Certificados
 
 Este proyecto es una aplicación web basada en Django que permite generar certificados de participación para cursos y eventos. Los certificados generados incluyen un código QR único para la verificación, y están diseñados con patrones de seguridad avanzados.
+
+![Ejemplo de Certificado](images/certificado_ejemplo.png)
+
 
 ## Características
 
