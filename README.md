@@ -1,4 +1,6 @@
 # Certificados
+![Ejemplo de Certificado](certificado_ejemplo.png)
+
 
 Este proyecto es una aplicación web diseñada para generar y exportar certificados de participación en formato PDF. Está construido con Django y utiliza WeasyPrint para la generación de los PDFs.
 
