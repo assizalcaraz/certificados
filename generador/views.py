@@ -1,7 +1,5 @@
-
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
 from .forms import CertificadoForm
 from .models import Certificado
 import hashlib
@@ -10,7 +8,8 @@ from io import BytesIO
 from django.core.files import File
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
-from cryptography.hazmat.primitives import serialization
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 # Generar claves RSA (esto normalmente se haría una vez y se almacenaría la clave privada de forma segura)
 private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
@@ -65,8 +64,22 @@ def generar_certificado(request):
         form = CertificadoForm()
     return render(request, 'generador/generar_certificado.html', {'form': form})
 
-
-
 def detalle_certificado(request, pk):
     certificado = get_object_or_404(Certificado, pk=pk)
     return render(request, 'generador/certificado_template.html', {'certificado': certificado})
+
+def exportar_certificado_pdf(request, pk):
+    certificado = get_object_or_404(Certificado, pk=pk)
+
+    template = get_template('generador/certificado_template.html')
+    context = {'certificado': certificado}
+    html = template.render(context)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="certificado_{certificado.pk}.pdf"'
+
+    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse('Error al generar el PDF', status=500)
+    return response
