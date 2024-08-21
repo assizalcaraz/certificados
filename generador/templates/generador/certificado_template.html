@@ -57,7 +57,12 @@
                 <p><strong>Fecha de Emisión:</strong> {{ certificado.fecha_emision }}</p>
             </div>
             <div class="qr">
-                <img src="{{ certificado.codigo_qr.url }}" alt="Código QR">
+                {% if for_pdf %}
+                    <img src="{{ qr_code_url }}" alt="Código QR" onerror="this.style.display='none';">
+                    <p>URL del QR: {{ qr_code_url }}</p>
+                {% else %}
+                    <img src="{{ qr_code_url }}" alt="Código QR">
+                {% endif %}
             </div>
         </div>
     </div>

@@ -3,9 +3,8 @@ services:
   django-weasyprint-app:
     build: .
     volumes:
-      - .:/app
-      - ./generador/staticfiles/css:/app/generador/staticfiles/css
-
+      - ./generador/staticfiles:/app/generador/staticfiles
+      - ./media:/app/media
     ports:
       - "8000:8000"
     environment:
