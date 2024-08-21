@@ -4,133 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificado de Participación</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 2cm;
-            background-color: #f9f9f9;
-            overflow: hidden;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            border: 2px solid #ddd;
-            overflow: hidden;
-            position: relative;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-top: 0;
-            text-transform: uppercase;
-            color: #333;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .info {
-            margin-top: 50px;
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-left {
-            width: 65%;
-        }
-
-        .info-left p {
-            font-size: 1.5em;
-            line-height: 1.4;
-            margin: 15px 0;
-            color: #555;
-        }
-
-        .qr {
-            width: 30%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            box-shadow: none;
-        }
-
-        .qr img {
-            width: 100%;
-            max-width: 150px;
-            height: auto;
-            border-radius: 0;
-        }
-
-        /* Patrones de líneas curvas */
-        .pattern-1, .pattern-2, .pattern-3 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.3;
-        }
-
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Estilo para el enlace del PDF */
-        .pdf-link {
-            text-align: center;
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
-            font-size: 1.2em;
-        }
-
-        .pdf-link a {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .pdf-link a:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/certificado.css' %}">
+    
 </head>
 <body>
     <div class="container">
         <!-- Primer patrón -->
         <div class="pattern-1">
             <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
-                <path d="M0,100 Q200,200 400,100 T800,100 L1000,100 L1000,0 L0,0 Z" fill="#ccc" />
+                <!-- SVG paths -->
             </svg>
         </div>
-    
+
         <!-- Segundo patrón -->
         <div class="pattern-2">
             <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
-                <path d="M0,300 Q200,400 400,300 T800,300 L1000,300 L1000,0 L0,0 Z" fill="#ccc" />
+                <!-- SVG paths -->
             </svg>
         </div>
-    
+
         <!-- Tercer patrón -->
         <div class="pattern-3">
             <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
-                <path d="M0,500 Q200,400 400,500 T800,500 L1000,500 L1000,0 L0,0 Z" fill="#ccc" />
+                <!-- SVG paths -->
             </svg>
         </div>
-    
-        <!-- Contenido del certificado -->
+
         <h1>Certificado de Participación</h1>
         <div class="info">
             <div class="info-left">
@@ -143,10 +43,12 @@
             </div>
         </div>
     </div>
-    
-    <!-- Enlace de descarga fuera del certificado -->
+
+    <!-- Enlace para descargar el certificado en PDF, solo visible en el navegador -->
+    {% if not for_pdf %}
     <div class="pdf-link">
         <a href="{% url 'exportar_certificado_pdf' certificado.pk %}">Descargar Certificado en PDF</a>
     </div>
+    {% endif %}
 </body>
 </html>

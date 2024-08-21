@@ -8,8 +8,11 @@ from io import BytesIO
 from django.core.files import File
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
-from django.template.loader import get_template
-from xhtml2pdf import pisa
+from PIL import Image, ImageDraw, ImageFont
+from django.conf import settings
+import os
+from weasyprint import HTML, CSS
+from django.template.loader import render_to_string
 
 # Generar claves RSA (esto normalmente se haría una vez y se almacenaría la clave privada de forma segura)
 private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
@@ -49,15 +52,8 @@ def generar_certificado(request):
 
             buffer = BytesIO()
             img.save(buffer, format="PNG")
-            
-            # Verifica el nombre del archivo que se está guardando
-            print(f"Guardando QR en {certificado.id}.png")
 
             certificado.codigo_qr.save(f'{certificado.id}.png', File(buffer), save=False)
-
-            # Asegúrate de que el campo de la imagen tiene un valor
-            print(f"QR guardado en: {certificado.codigo_qr.path}")
-
             certificado.save()
             return redirect('detalle_certificado', pk=certificado.pk)
     else:
@@ -69,17 +65,32 @@ def detalle_certificado(request, pk):
     return render(request, 'generador/certificado_template.html', {'certificado': certificado})
 
 def exportar_certificado_pdf(request, pk):
+    # Obtener el certificado por su pk
     certificado = get_object_or_404(Certificado, pk=pk)
 
-    template = get_template('generador/certificado_template.html')
-    context = {'certificado': certificado}
-    html = template.render(context)
+    # Renderizar la plantilla HTML con el certificado
+    # Se añade `for_pdf=True` al contexto para ocultar el enlace de descarga
+    html_string = render_to_string('generador/certificado_template.html', {'certificado': certificado, 'for_pdf': True})
 
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="certificado_{certificado.pk}.pdf"'
+    # Crear un objeto HTML para WeasyPrint
+    html = HTML(string=html_string)
 
-    pisa_status = pisa.CreatePDF(html, dest=response)
+    # Definir la ruta del PDF a guardar
+    pdf_path = os.path.join(settings.MEDIA_ROOT, 'certificados_pdf', f'{certificado.pk}.pdf')
 
-    if pisa_status.err:
-        return HttpResponse('Error al generar el PDF', status=500)
+    # Opcional: Cargar un archivo CSS específico si es necesario
+    css_path = os.path.join(settings.STATIC_ROOT, 'css', 'certificado.css')
+    css = CSS(filename=css_path)
+
+    # Configurar la página en orientación horizontal utilizando un CSS inline
+    landscape_css = CSS(string='@page { size: A4 landscape; }')
+
+    # Escribir el archivo PDF con orientación horizontal
+    html.write_pdf(pdf_path, stylesheets=[css, landscape_css])
+
+    # Devolver el PDF como respuesta HTTP
+    with open(pdf_path, 'rb') as pdf_file:
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="certificado_{certificado.pk}.pdf"'
+    
     return response
