@@ -1,5 +1,5 @@
-# Base image with Python
-FROM python:3.9-slim
+# Etapa 1: Construcción de las dependencias de Python y las bibliotecas necesarias
+FROM python:3.9-slim AS builder
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1
 # Set the working directory in the container
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies for building Python packages
 RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
@@ -29,11 +29,35 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
+# Copia todos los archivos de la aplicación
 COPY . .
 
-# Collect static files
+# Collect static files (assuming you need this for your Django app)
 RUN python manage.py collectstatic --noinput
+
+# Etapa 2: Imagen final más pequeña sin herramientas de construcción
+FROM python:3.9-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the dependencies from the builder stage
+COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=builder /app /app
+
+# Copy the static files from the builder stage
+COPY --from=builder /app/static /app/static
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    libcairo2 \
+    libgdk-pixbuf2.0-0 \
+    libpango1.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Expose the port Django runs on
 EXPOSE 8000
